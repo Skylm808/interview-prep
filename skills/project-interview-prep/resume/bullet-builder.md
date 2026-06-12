@@ -17,7 +17,7 @@ Extract honest project highlights and format them as resume bullets with evidenc
 - 参与联调
 - 参与排查
 - 梳理并验证
-- 设计并落地
+- 设计并落地 (only when actually designed and delivered)
 
 ## Evidence Rules
 

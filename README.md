@@ -1,14 +1,15 @@
 # Project Interview Prep
 
-A skill for coding agents that helps interns and junior developers understand project core logic, prepare for technical interviews, and generate resume materials.
+A skill for coding agents that helps interns and junior developers understand real project code flow, audit contribution boundaries, prepare for technical interviews, and draft honest resume materials.
 
 ## Features
 
 - 🔍 **Link Analysis**: Trace code call chains from entry point to data layer
-- 🎤 **Interview Questions**: Generate 3-5 questions per topic with difficulty levels (初级/中级/高级)
+- 🎤 **Interview Questions**: Generate questions by difficulty and interview stage
 - ⭐ **STAR Answers**: Structured answers using Situation-Task-Action-Result method
-- 📄 **Resume Builder**: Extract project highlights as quantified bullet points
-- ⚖️ **Tradeoff Analysis**: Analyze technical decisions and their tradeoffs
+- 📄 **Resume Builder**: Extract project highlights with evidence-first wording
+- ⚖️ **Tradeoff Analysis**: Analyze technical decisions, tradeoffs, and ownership level
+- 🧾 **Contribution Audit**: Separate implemented, modified, validated, read-only, and not-involved work
 
 ## Supported Platforms
 
@@ -76,7 +77,7 @@ Once installed, the skill will auto-trigger when you ask questions like:
 ```
 "帮我提取这个项目的亮点写简历"
 "帮我写简历素材"
-"量化一下这个功能的成果"
+"帮我检查这段项目经历有没有夸大"
 ```
 
 ### Tradeoff Analysis (取舍分析)
@@ -130,10 +131,10 @@ Q5: 如果订单量增长10倍，有什么瓶颈？
 
 电商订单系统 | 后端开发实习生 | 2025.06-2025.09
 
-- 设计并实现订单创建链路，采用Saga模式处理分布式事务，
-  保证数据最终一致性，成功率99.99%
+- 负责订单查询链路优化，补充日志打点并协助验证重复查询问题，
+  完成 Postman 连续请求回归。
 
-- 通过RabbitMQ实现异步解耦，系统可用性提升至99.9%
+- 参与异步消息联调，确认失败重试和幂等处理逻辑在测试环境可稳定运行。
 ```
 
 ## Skill Structure
@@ -158,11 +159,11 @@ skills/
 
 ## Design Philosophy
 
-1. **No exaggeration**: Honest answers suitable for intern level
-2. **Quantified results**: Always include metrics when possible
-3. **Tradeoff aware**: Every decision has pros and cons
-4. **STAR method**: Structured answers for behavioral questions
-5. **Beyond CRUD**: Focus on non-trivial code patterns
+1. **No exaggeration**: Do not claim work that was only read or observed
+2. **Evidence first**: Use numbers only when the source is clear
+3. **Contribution boundaries**: Separate implemented, modified, validated, investigated, and read-only work
+4. **Tradeoff aware**: Explain the option chosen, what it sacrificed, and whether the user participated in that decision
+5. **CRUD to engineering value**: Treat CRUD as valuable when it includes permissions, validation, observability, consistency, query design, or governance
 
 ## Contributing
 

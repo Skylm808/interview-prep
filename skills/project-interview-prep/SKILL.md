@@ -80,6 +80,13 @@ Common trade-offs:
 - Performance vs implementation complexity
 - Storage redundancy vs query cost
 
+### Trade-off Ownership Level
+
+- Participated in decision: say "参与方案设计/讨论"
+- Implemented under chosen design: say "理解并实现该方案"
+- Read after the fact: say only "梳理后理解该设计取舍"
+- Personal future idea: say only "如果后续优化，我会考虑"
+
 ## When to Use
 
 **Use when:**
