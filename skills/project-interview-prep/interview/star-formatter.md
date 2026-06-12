@@ -2,39 +2,41 @@
 
 ## Overview
 
-Format interview answers using STAR method (Situation, Task, Action, Result) with tradeoff analysis.
+Format interview answers with STAR while preserving contribution boundaries and metric evidence.
+
+## Required Checks Before Writing
+
+1. What did the candidate personally implement, modify, validate, or investigate?
+2. Which parts were only read or learned?
+3. Which results have evidence?
+4. Which claims need downgraded wording?
 
 ## STAR Structure
 
 ### Situation (背景)
-Set the context:
-- Project background
-- Problem faced
-- Constraints
+State the project context, problem, and constraints.
 
 ### Task (任务)
-Define your responsibility:
-- What needed to be solved
-- Your specific role
-- Success criteria
+State the candidate'"'"'s exact responsibility. Use one of:
+- 负责实现
+- 参与优化/迭代
+- 参与联调/验证
+- 参与排查
+- 熟悉/梳理
 
 ### Action (行动)
-Detail your approach:
-- Technical solution chosen
-- Implementation steps
-- Why this approach over alternatives
+Describe concrete work:
+- Files/modules touched
+- Technical path chosen
+- Validation performed
+- Trade-off considered
 
 ### Result (结果)
-Quantify the outcome:
-- Performance metrics
-- Business impact
-- Lessons learned
+Use metrics only when evidence exists.
+If evidence is missing, describe the mechanism or verified qualitative result.
 
 ### Tradeoff (取舍)
-Analyze the decision:
-- What you gained
-- What you sacrificed
-- Would you do it differently now
+Explain why the chosen path fit the constraints and what it sacrificed.
 
 ## Answer Template
 
@@ -42,21 +44,19 @@ Analyze the decision:
 **问题: [问题]**
 
 **Situation（背景）:**
-[1-2句] 在什么背景下，面临什么问题
+[1-2句] 项目背景、问题、约束。
 
 **Task（任务）:**
-[1句] 需要解决什么，你的职责是什么
+[1句] 我的边界是：[负责实现/参与优化/参与联调/参与排查/熟悉梳理] [具体模块]。
 
 **Action（行动）:**
-[2-3句]
-- 选择了什么技术方案
-- 具体怎么实现的
-- 为什么选这个方案
+- 我改动/验证/梳理了: `[file/module]`
+- 采用了: [技术方案]
+- 取舍是: [为什么不用另一个方案]
 
 **Result（结果）:**
-[1-2句] 量化成果
-- 性能: xxx
-- 业务: xxx
+- 有证据: [指标 + 数据来源]
+- 无证据: [机制性结果，不写数字]
 
 **Tradeoff（取舍）:**
 - 选择了: [xxx]，因为 [xxx]
@@ -64,68 +64,42 @@ Analyze the decision:
 - 如果重来: [xxx]
 ```
 
-## Example: Distributed Transaction
+## Safe Result Examples
 
-**问题: 为什么用Saga而不是2PC？**
+Unstable:
+```markdown
+接口响应时间提升 70%。
+```
 
-**Situation（背景）:**
-订单创建需要同时操作订单库和库存库，两个服务独立部署，数据库分离。
+Safer without metrics:
+```markdown
+通过日志和 Postman 定位接口重复查询问题，参与优化查询链路并补充验证记录。
+```
 
-**Task（任务）:**
-需要保证两个操作的数据一致性，同时不能显著影响系统性能。
+Safest with evidence:
+```markdown
+接口平均耗时从 1.2s 降至 350ms，数据来自 Postman 连续 10 次请求均值。
+```
 
-**Action（行动）:**
-- 采用Saga模式，将长事务拆分为多个本地事务
-- 订单创建时先标记为pending状态
-- 库存扣减成功后，更新订单为confirmed
-- 失败时触发补偿操作（取消订单、恢复库存）
+## Pressure-Test Add-On
 
-**Result（结果）:**
-- 避免了2PC的锁等待问题，响应时间从500ms降到100ms
-- 系统可用性提升，库存服务故障不影响订单创建
-- 日均处理10万+订单，数据一致性99.99%
-
-**Tradeoff（取舍）:**
-- 选择了: 最终一致性 + 高可用性
-- 牺牲了: 强一致性，增加了状态管理复杂度
-- 如果重来: 考虑引入TCC模式，在一致性和性能间取得更好平衡
-
-## Example: Caching Strategy
-
-**问题: 为什么用Cache-Aside而不是Write-Through？**
-
-**Situation（背景）:**
-商品详情页QPS高达10000+，直接查询数据库响应时间200ms，无法满足性能要求。
-
-**Task（任务）:**
-将响应时间降到50ms以内，同时保证数据不会严重过期。
-
-**Action（行动）:**
-- 采用Cache-Aside模式
-- 读请求先查缓存，miss后查DB并回填缓存
-- 写请求先更新DB，再删除缓存（而非更新）
-- 缓存过期时间设置为5分钟
-
-**Result（结果）:**
-- 响应时间从200ms降到20ms，提升90%
-- 缓存命中率95%+
-- 数据延迟控制在5分钟内
-
-**Tradeoff（取舍）:**
-- 选择了: 高性能 + 实现简单
-- 牺牲了: 数据实时性，存在短暂不一致窗口
-- 如果重来: 引入缓存更新队列，实现准实时同步
+After each STAR answer, prepare 2-3 likely follow-ups:
+- 这部分是你写的吗？
+- 你改过哪些文件？
+- 这个结果怎么证明？
+- 如果数据量扩大 10 倍怎么办？
+- 线上出错怎么回滚？
 
 ## Tips for Interns
 
-### ✅ Do
-- 用具体数字量化结果（百分比、QPS、响应时间）
-- 承认自己负责的具体部分，不要夸大
-- 展示思考过程，不只是结果
-- 提到遇到的困难和如何解决
+### Do
+- Say exactly what you owned.
+- Mention files, modules, tests, logs, or APIs when useful.
+- Use metrics only with a source.
+- Admit read-only familiarity as read-only familiarity.
 
-### ❌ Don't
-- 说"我独立设计了整个系统"
-- 只描述做了什么，不说为什么
-- 回避遇到的问题
-- 使用过于复杂的术语但无法解释
+### Don'"'"'t
+- Say "主导" if you only participated.
+- Say "核心模块" if you only read the core workflow.
+- Invent benchmark ranges.
+- Hide trade-offs or failure cases.

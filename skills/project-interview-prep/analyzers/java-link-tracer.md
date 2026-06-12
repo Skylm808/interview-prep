@@ -76,10 +76,13 @@ public class LogAspect {
 
 ## Core Logic Identification
 
-### NOT Core Logic (Simple CRUD)
-- Basic JPA/MyBatis CRUD operations
-- Simple parameter validation with @Valid
-- Direct entity-to-DTO mapping
+### CRUD Still Matters When It Adds Engineering Value
+- Permission checks and role gating
+- Validation chains with business rules
+- Query shaping, pagination, export, search
+- Config governance and rollout control
+- Logging, metrics, tracing, and alert hooks
+- Data consistency handling around writes or syncs
 
 ### Core Logic (Worth Highlighting)
 - **Distributed Transactions**: Saga, TCC, eventual consistency
@@ -117,4 +120,5 @@ public class LogAspect {
 
 ### 技术亮点
 - ✅ [亮点]: [说明]
+- 🧾 [贡献边界]: [负责/参与/联调/只读]
 ```

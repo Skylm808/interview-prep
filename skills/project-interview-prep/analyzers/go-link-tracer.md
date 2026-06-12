@@ -69,10 +69,13 @@ if err != nil {
 
 ## Core Logic Identification
 
-### NOT Core Logic (Simple CRUD)
-- Basic database insert/query/update/delete
-- Simple parameter validation
-- Direct request-response mapping
+### CRUD Still Matters When It Adds Engineering Value
+- Permission checks and role gating
+- Validation chains with real business rules
+- Query shaping, filters, pagination, export
+- Config governance and rollout control
+- Logging, metrics, tracing, and alert hooks
+- Data consistency handling around writes or syncs
 
 ### Core Logic (Worth Highlighting)
 - **Distributed Patterns**: Saga, 2PC, eventual consistency
@@ -110,4 +113,5 @@ if err != nil {
 
 ### 技术亮点
 - ✅ [亮点]: [说明]
+- 🧾 [贡献边界]: [负责/参与/联调/只读]
 ```
