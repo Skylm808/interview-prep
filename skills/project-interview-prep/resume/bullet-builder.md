@@ -30,6 +30,15 @@ Only use numbers when you can point to:
 
 If the data source is missing, write the mechanism or verified outcome instead.
 
+## Before Writing Bullets
+
+If the user has not provided enough facts, ask 3-5 questions first:
+- What did you personally implement, modify, validate, or investigate?
+- Which files, APIs, pages, jobs, or configs did you touch?
+- What evidence exists for the result?
+- Which parts were team-owned or only read by you?
+- What interview or resume target is this for?
+
 ## Safe Wording Map
 
 | Unsafe | Safer |
@@ -64,6 +73,16 @@ If the data source is missing, write the mechanism or verified outcome instead.
 - 参与权限校验模块实现，梳理配置 CRUD 到配置治理的调用链，补充异常分支验证。
 - 参与异步消息联调，确认失败重试和幂等处理逻辑在测试环境可稳定运行。
 ```
+
+## Output Self-Check
+
+Every bullet must have:
+- Contribution boundary: 负责/参与/联调/排查/梳理
+- Technical path: module, API, page, job, config, or mechanism
+- Evidence level: metric source, test/log/Postman record, or no-number mechanism
+- Follow-up survivability: answerable if asked "这是你做的吗？怎么证明？"
+
+If a bullet fails the check, downgrade it or omit it.
 
 ## Avoid
 

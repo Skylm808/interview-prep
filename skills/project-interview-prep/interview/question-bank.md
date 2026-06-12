@@ -11,6 +11,7 @@ For each core logic point, generate:
 2. 2-3 中级题
 3. 1-2 高级题
 4. 1-2 pressure-test questions
+5. Interviewer-layer variants when the user is preparing for a specific interview stage
 
 ## Required Question Types
 
@@ -33,6 +34,12 @@ For each core logic point, generate:
 - 数据量扩大 10 倍怎么办？
 - 慢接口怎么定位？
 - 线上出错怎么回滚？
+
+### 5. Interviewer-Layer Check
+- 一面: 你做了什么？流程是什么？改了哪些文件？
+- 二面: 为什么这么设计？瓶颈在哪里？方案怎么演进？
+- 主管面: 这件事对业务有什么价值？你怎么协作和交付？
+- HR 面: 你遇到的困难是什么？你学到了什么？你如何证明不是夸大？
 
 ## Question Templates
 
@@ -76,13 +83,65 @@ Q: 线上出错怎么回滚？
 > 考察点: 风险控制
 ```
 
-## Topic Patterns
+## Interview Stage Templates
+
+### 一面
+
+```
+Q: 你在这个项目里具体负责哪部分？
+Q: 这个功能从入口到落库/外部依赖怎么走？
+Q: 你怎么验证它是可用的？
+```
+
+### 二面
+
+```
+Q: 为什么选择当前方案，而不是同步/异步、实时/离线、缓存/不缓存里的另一个方案？
+Q: 当前设计的瓶颈是什么？
+Q: 数据量、并发、调用失败扩大后怎么处理？
+```
+
+### 主管面
+
+```
+Q: 这个功能解决了什么业务问题？
+Q: 你在团队协作里承担了什么责任？
+Q: 如果给你更多时间，你会优先改哪里？
+```
+
+### HR 面
+
+```
+Q: 这段经历里最困难的点是什么？
+Q: 哪些是你做的，哪些是团队做的？
+Q: 你怎么确保简历描述是真实的？
+```
+
+## Project-Type Patterns
 
 - CRUD to engineering value
 - Permission and validation
 - Caching and consistency
 - Async and queue integration
 - Observability and logging
-- Batch or report pipelines
-- Frontend state and data flow
-- Test harnesses and verification
+
+### Frontend
+- Route/page to component data flow
+- State ownership: local state vs store vs server cache
+- Loading, empty, error, and permission states
+- API retries, stale data, and cache invalidation
+- Bundle size and rendering performance
+
+### Data / Batch
+- Source, transform, sink path
+- Idempotency and retry
+- Data quality checks
+- Backfill and late-arriving data
+- Report freshness and correctness
+
+### Test / Platform
+- Trigger path and execution environment
+- Fixture isolation and cleanup
+- Flakiness control
+- Artifact reporting
+- Rollback or rerun strategy

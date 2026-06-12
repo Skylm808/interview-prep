@@ -1,6 +1,6 @@
 ---
 name: project-interview-prep
-description: Use when the user wants to audit a real project, trace code flow, separate true contribution from read-only familiarity, translate CRUD work into engineering value, generate interview questions/STAR answers, or draft honest resume bullets. Triggers on keywords: 链路, 流程, 怎么实现, 为什么, 核心代码, 面试, 简历, interview, resume, code flow, architecture.
+description: Use for real project code-flow study, contribution audit, interview preparation, or honest resume bullets. Do not use for writing code, implementing features, or debugging.
 ---
 
 # Project Interview Prep
@@ -61,6 +61,25 @@ CRUD is still valuable when it includes engineering work:
 - Logging or metrics -> observability
 - Pagination or export -> large-data handling
 
+### Design Trade-off Review
+
+For each meaningful feature, identify:
+- Option A vs Option B
+- Why the current option fits the constraint
+- What it sacrifices
+- When it may fail
+- Future improvement
+
+Common trade-offs:
+- Synchronous vs asynchronous
+- Real-time computation vs precomputed snapshot
+- Cache vs consistency
+- Pagination vs full export
+- Strict permission vs usability
+- Generic framework vs business-specific delivery
+- Performance vs implementation complexity
+- Storage redundancy vs query cost
+
 ## When to Use
 
 **Use when:**
@@ -73,9 +92,20 @@ CRUD is still valuable when it includes engineering work:
 - User wants to turn CRUD-plus work into honest engineering value
 
 **Do NOT use when:**
+- User asks to write, modify, refactor, or implement code
+- User asks to fix a bug, failing test, build error, or production issue
 - User is writing new code from scratch (use brainstorming/planning skills instead)
 - User is debugging an existing issue (use systematic-debugging skill)
 - User asks about syntax or language basics
+
+## If Information Is Missing
+
+Ask 3-5 fact questions before generating claims, especially for resume bullets:
+- Which feature/module did you personally implement, modify, validate, or investigate?
+- Which files, APIs, pages, jobs, or configs did you touch?
+- What evidence exists for the result: logs, metrics, Postman, test output, screenshots, or release notes?
+- Which parts did you only read or learn from others?
+- What interview target is this for: internship, campus hiring, first round, second round, manager round, or HR?
 
 ## Core Workflow
 
@@ -83,8 +113,10 @@ CRUD is still valuable when it includes engineering work:
 2. Build a contribution boundary map.
 3. Trace the call chain from entrypoint to data layer or external dependency.
 4. Translate CRUD into engineering value only when the code actually adds it.
-5. Pressure-test the claims against likely interviewer follow-ups.
-6. Generate STAR answers and resume bullets with evidence-first wording.
+5. Review design trade-offs.
+6. Pressure-test the claims against likely interviewer follow-ups.
+7. Generate STAR answers and resume bullets with evidence-first wording.
+8. Run the output self-check before finalizing.
 
 ## Project Type Detection
 
@@ -96,6 +128,13 @@ If the stack is not Go/Java, trace the equivalent path instead of forcing a back
 - Frontend: route/page -> component -> hook/store -> API -> cache/server
 - Data/batch: job/runner -> transform -> validate -> sink/report
 - Test/platform: trigger -> fixture/setup -> executor -> report/artifact
+
+### Project-Type Question Patterns
+
+- Frontend: state ownership, API error handling, loading/empty states, permission rendering, cache invalidation, bundle/performance impact.
+- Data/batch: input source, transform rules, idempotency, retry, data quality checks, late-arriving data, backfill strategy.
+- Test/platform: trigger path, fixtures, isolation, flakiness control, artifact reporting, environment rollback.
+- Backend/API: auth, validation, transaction boundary, consistency, cache, pagination/export, external dependency failure.
 
 ## Core Pattern
 
@@ -160,6 +199,7 @@ For each real core logic point, generate:
 - 2-3 中级题
 - 1-2 高级题
 - 1-2 pressure-test questions
+- Interviewer-layer variants for first round, second round, manager round, and HR when relevant
 
 ### 3. STAR Answers
 
@@ -168,6 +208,17 @@ Use STAR, then add only evidence-backed metrics.
 ### 4. Resume Bullets
 
 Write bullets only from verified contributions and supported results.
+
+### 5. Output Self-Check
+
+Before final output, verify every claim has:
+- Contribution boundary
+- Evidence level
+- Technical path
+- Trade-off or limitation when relevant
+- Follow-up survivability
+
+If a bullet fails any check, downgrade it or omit it.
 
 ## Interview Pressure Test
 
